@@ -1,0 +1,4 @@
+%syntax-version=1.0.0
+%project=myapp
+%uri=https://github.com/kovalensue/pg_project_template.git
+
