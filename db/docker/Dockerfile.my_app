@@ -1,0 +1,58 @@
+# Docker file used for building base PostgreSQL image with specific OS and version.
+# This docker file also covers installation of necessary utilities for building and
+# installing PostgreSQL extensions.
+
+ARG OS="alpine"
+ARG OS_VERSION="3.21"
+ARG PG_VERSION="16.6"
+
+FROM postgres:${PG_VERSION}-${OS}${OS_VERSION}
+
+ARG OS
+ARG OS_VERSION
+ARG PG_VERSION
+
+LABEL "pg.version"=${PG_VERSION}
+LABEL "os"=${OS}
+LABEL "os.version"=${OS_VERSION}
+
+# Install all utils you needed during image build
+RUN set -ex
+RUN apk add --no-cache --virtual .utils \
+  git \
+  make \
+  gcc \
+  icu-dev \
+  clang19 \
+  llvm19
+
+# ============ Extensions ============
+# Install extensions - careful this step will only install extension file to correct places. You still need to
+# run `CREATE EXTENSION` command using migrations.
+
+# Freeze extensions versions. Never install anything without fixed version!!!
+ARG plpgsql_check="v2.7.10"
+
+# Fetch and build extensions
+RUN git -c advice.detachedHead=false clone --depth=1 --branch ${plpgsql_check} https://github.com/okbob/plpgsql_check.git
+RUN cd /plpgsql_check && make install prefix=/usr/local/
+RUN rm -rf /plpgsql_check
+
+# Install extensions from OS repository
+# <TODO>
+
+
+# ============ Misc. ============
+# Install extensions - careful this step will only install extension file to correct places. You still need to
+# Cleanup unnecessary bloat from the image
+RUN apk del .utils
+
+
+# store data inside container hack
+ENV PGDATA=/var/lib/postgresql-static
+RUN mkdir -p ${PGDATA}
+
+# trust postgres logings from host (dangerous - only good for local env)
+ENV POSTGRES_HOST_AUTH_METHOD=trust
+
+
