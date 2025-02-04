@@ -1,0 +1,20 @@
+networks:
+    my_app_db-dev:
+        driver: bridge
+
+services:
+    my_app_db01:
+        container_name: my_app_db01
+        image: some.repository.com/my_app_db:latest
+        ports:
+            - 50432:5432
+        networks:
+            - my_app_db-dev
+
+    my_app_db02:
+        container_name: my_app_db02
+        image: some.repository.com/my_app_db:latest
+        ports:
+            - 50032:5432
+        networks:
+            - my_app_db-dev

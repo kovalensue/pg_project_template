@@ -9,17 +9,12 @@ include $(CONF_FILE)
 
 .PHONY: db
 db: ## Initialize and start dockerized db environment.
-	@# check if network exists and create it, it would be better to use docker-compose up,
-	@# because it can create network
-	@# setting PGDATA: this is very important i we want to persist data into image using docker commit command
-	@# https://stackoverflow.com/questions/27377876/docker-postgres-with-initial-data-is-not-persisted-over-commits#comment125095736_56753594
-	@docker network inspect $(NETWORK) > /dev/null 2>&1 || \
-	    docker network create $(NETWORK)
-	docker run --rm --network $(NETWORK) --name $(NAME) -p $(PUBLISH_PORT):5432 \
-		-e POSTGRES_PASSWORD=$(POSTGRES_PSW) \
-		-e PGDATA=/var/lib/postgresql/static-data \
-		$(IMAGE)
+	docker compose -f ./docker/docker-compose.yml down
+	docker compose -f ./docker/docker-compose.yml up -d
 
+.PHONY: db.stop
+db.stop: ## Stops local docker environments and remove all containers, networks etc.
+	docker compose -f ./docker/docker-compose.yml down
 
 .PHONY: db.image
 db.image: ## Commit current db containers into new images.
@@ -33,6 +28,6 @@ help: ## Displays help and usage information.
 .PHONY: image.build
 image.build: ## Builds image according to docker file specified in db/docker
 	docker buildx build \
-		--file db/docker/Dockerfile.my_app \
+		--file docker/Dockerfile.my_app \
 		--tag "some.repository.com/my_app_db:latest" \
 		.
