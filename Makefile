@@ -9,12 +9,12 @@ include $(CONF_FILE)
 
 .PHONY: db
 db: ## Initialize and start dockerized db environment.
-	docker compose -f ./docker/docker-compose.yml down
+	docker compose -f ./docker/docker-compose.yml down -t 0 -v
 	docker compose -f ./docker/docker-compose.yml up -d
 
 .PHONY: db.stop
 db.stop: ## Stops local docker environments and remove all containers, networks etc.
-	docker compose -f ./docker/docker-compose.yml down
+	docker compose -f ./docker/docker-compose.yml down -t 0 -v
 
 .PHONY: db.image
 db.image: ## Commit current db containers into new images.
