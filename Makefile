@@ -18,7 +18,7 @@ db.stop: ## Stops local docker environments and remove all containers, networks 
 
 .PHONY: db.image
 db.image: ## Commit current db containers into new images.
-	echo 'Not yet implemented.'
+	@echo 'Not yet implemented.'
 
 .PHONY: help
 help: ## Displays help and usage information.

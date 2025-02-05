@@ -1,5 +1,8 @@
 # pg_project_template
+
 Template repository for PostgreSQL dockerized dev environment. Migrations powered by sqitch, build powered by Make.
+
+> Warning: This is still WIP and everything is pretty much subject to change. :D
 
 ## Requirements
 
@@ -13,11 +16,57 @@ more info here: https://sqitch.org/download/docker/
 
 In this project we are using [official PosgreSQL image](https://hub.docker.com/_/postgres).
 
-### PSQL
+### psql
+
+> Don't bother if you are using sqitch in docker - as mentioned in [sqitch documentation](https://sqitch.org/docs/manual/sqitchtutorial/#on-target) psql is already included in the sqitch container ;-)
 
 Install psql client to execute migrations, on Debian based distros you can use `sudo apt install postgresql-client`
 
-## Usage
+## Project structure
+
+To init sqitch use:
+
+`./sqitch init my_app --uri https://github.com/kovalensue/pg_project_template.git --engine pg --top-dir migrations`.
+
+Issuing this command above you will initialize all directories and files *sqitch* needs to work.
+
+> Feel free to just fork this project as is and edit whatever you want to suit your needs. :-)
+
+```
+.
+├── docker
+│   ├── docker-compose.yml
+│   └── Dockerfile.my_app
+├── LICENSE
+├── Makefile
+├── migrations
+│   ├── deploy
+│   ├── revert
+│   ├── sqitch.plan
+│   └── verify
+├── my_app.conf
+├── README.md
+├── sqitch
+└── sqitch.conf
+```
+
+### Docker
+
+This folder contains all necessary configurations needed to run you dockerized db environment.
+
+**Files:**
+- `docker-compose.yml` - definition of all containers, networks and more you need to run your local environment
+- `Dockerfile.my_app` - used to build new custom image of PostgreSQL with given version and specific set of extensions (you still need to run migrations with `CREATE EXTENSION ...` though)
+
+### Makefile
+
+Backbone of the project containing all targets needed to efficiently interact with your environment using `make` command.
+
+For more info about each command see section Usage bellow.
+
+## Usage [WIP]
+
+> IN PROGRESS
 
 In this section is described basic usage and how the project structure was actually created.
 
@@ -25,28 +74,5 @@ In this section is described basic usage and how the project structure was actua
 
 All sqitch related things were done according to basic PostgreSQL tutorial available here: https://sqitch.org/docs/manual/sqitchtutorial/
 
-### Project structure
-
-Template project structure was created using `sqitch init` command.
-
-`./sqitch init myapp --uri https://github.com/kovalensue/pg_project_template.git --engine pg --top-dir src`.
-
-After issuing this command your project should look like this.
-
-> Feel free to just fork this project and update `sqitch.conf` to suit your needs :-)
-
-
-```
-.
-├── LICENSE
-├── README.md
-├── sqitch
-├── sqitch.conf  -- sqitch project-wise configuration
-└── src
-    ├── deploy       -- dir with SQL scripts to apply changes
-    ├── revert       -- dir with SQL scripts to revert changes
-    ├── sqitch.plan  -- file used by sqitch to apply changes in correct order
-    └── verify       -- dir with SQL scripts to verify changes
-```
 
 TODO... basic config, creating migrations, etc.
