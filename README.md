@@ -18,11 +18,13 @@ In this project we are using [official PosgreSQL image](https://hub.docker.com/_
 
 ### psql
 
-> Don't bother if you are using sqitch in docker - as mentioned in [sqitch documentation](https://sqitch.org/docs/manual/sqitchtutorial/#on-target) psql is already included in the sqitch container ;-)
+> Don't bother if you are using sqitch in docker - as mentioned in [sqitch documentation](https://sqitch.org/docs/manual/sqitchtutorial) psql is already included in the sqitch container ;-)
 
 Install psql client to execute migrations, on Debian based distros you can use `sudo apt install postgresql-client`
 
 ## Project structure
+
+> :warning: WORK IN PROGRESS
 
 To init sqitch use:
 
@@ -62,11 +64,11 @@ This folder contains all necessary configurations needed to run you dockerized d
 
 Backbone of the project containing all targets needed to efficiently interact with your environment using `make` command.
 
-For more info about each command see section Usage bellow.
+For more info about each command see **Usage** section bellow.
 
-## Usage [WIP]
+## Usage
 
-> IN PROGRESS
+> :warning: WORK IN PROGRESS
 
 In this section is described basic usage and how the project structure was actually created.
 
