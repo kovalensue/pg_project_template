@@ -2,7 +2,7 @@
 
 Template repository for PostgreSQL dockerized dev environment. Migrations powered by sqitch, build powered by Make.
 
-> Warning: This is still WIP and everything is pretty much subject to change. :D
+> Warning: This is still WIP and pretty much everything is subject to change. :D
 
 ## Requirements
 
