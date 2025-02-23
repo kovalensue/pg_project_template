@@ -2,11 +2,6 @@
 
 # @ - makes commands silent :D
 
-
-CONF_FILE ?= my_app.conf
-include $(CONF_FILE)
-
-
 .PHONY: db
 db: ## Initialize and start dockerized db environment.
 	docker compose -f ./docker/docker-compose.yml down -t 0 -v

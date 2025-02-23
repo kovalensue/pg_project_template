@@ -52,7 +52,7 @@ RUN apk del .utils
 ENV PGDATA=/var/lib/postgresql-static
 RUN mkdir -p ${PGDATA}
 
-# trust postgres logings from host (dangerous - only good for local env)
+# trust postgres logins from host (dangerous - only good for local env)
 ENV POSTGRES_HOST_AUTH_METHOD=trust
 
 
