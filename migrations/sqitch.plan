@@ -2,3 +2,5 @@
 %project=myapp
 %uri=https://github.com/kovalensue/pg_project_template.git
 
+my_app_schema 2025-03-03T20:33:12Z kovalensue <koval@world.com> # Adding schema for my app
+users_table 2025-03-03T21:25:35Z kovalensue <koval@world.com> # adding users table for my_app
