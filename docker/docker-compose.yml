@@ -10,6 +10,11 @@ services:
             - 50432:5432
         networks:
             - my_app_db-dev
+        healthcheck:
+            test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+            interval: 1s
+            timeout: 1s
+            retries: 5
 
     my_app_replica:
         container_name: my_app_replica
@@ -18,3 +23,8 @@ services:
             - 50032:5432
         networks:
             - my_app_db-dev
+        healthcheck:
+            test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+            interval: 1s
+            timeout: 1s
+            retries: 5

@@ -1,12 +1,19 @@
 .DEFAULT_GOAL := help
 
 # @ - makes commands silent :D
+# TODO: checking dbs health like this is BS, because it will also include already existing running containers so we
+#       could end up waiting forever
 
 .PHONY: db
 db: ## Initialize and start dockerized db environment.
 	@echo "Starting local database(s)..."
 	@docker compose -f ./docker/docker-compose.yml down -t 0 -v
 	@docker compose -f ./docker/docker-compose.yml up -d
+	@echo -n "Waiting for database(s) ";
+	@until [ "$$(docker ps | grep -vc "healthy" || echo 0)" -eq 1 ]; do sleep 1; echo -n "."; done
+	@echo -n " Database(s) ready!\n"
+	@./sqitch deploy -t local@my_app
+	@./sqitch deploy -t local@my_app_replica
 
 .PHONY: db.stop
 db.stop: ## Stops local docker environments and remove all containers, networks etc.
