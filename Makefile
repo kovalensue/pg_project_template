@@ -15,6 +15,10 @@ db: ## Initialize and start dockerized db environment.
 	@./sqitch deploy -t local@my_app
 	@./sqitch deploy -t local@my_app_replica
 
+.PHONY: migr
+migr: ## Create **sqitch** migrations for given target.
+	@echo 'Not implemented yet.'
+
 .PHONY: db.stop
 db.stop: ## Stops local docker environments and remove all containers, networks etc.
 	@echo "Stoping local database(s)..."
@@ -22,7 +26,7 @@ db.stop: ## Stops local docker environments and remove all containers, networks 
 
 .PHONY: db.image
 db.image: ## Commit current db containers into new images.
-	@echo 'Not yet implemented.'
+	@echo 'Not implemented yet.'
 
 .PHONY: help
 help: ## Displays help and usage information.
@@ -34,4 +38,4 @@ image.build: ## Builds image according to docker file specified in db/docker
 	docker buildx build \
 		--file docker/Dockerfile.my_app \
 		--tag "some.repository.com/my_app_db:latest" \
-		.
+		./docker/

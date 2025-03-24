@@ -7,6 +7,7 @@ ARG OS_VERSION="3.21"
 ARG PG_VERSION="16.6"
 
 FROM postgres:${PG_VERSION}-${OS}${OS_VERSION}
+COPY ./init.sql /docker-entrypoint-initdb.d/
 
 ARG OS
 ARG OS_VERSION
