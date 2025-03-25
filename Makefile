@@ -6,17 +6,12 @@
 
 .PHONY: db
 db: ## Initialize and start dockerized db environment.
-	@echo "Starting local database(s)..."
-	@docker compose -f ./docker/docker-compose.yml down -t 0 -v
-	@docker compose -f ./docker/docker-compose.yml up -d
-	@echo -n "Waiting for database(s) ";
-	@until [ "$$(docker ps | grep -vc "healthy" || echo 0)" -eq 1 ]; do sleep 1; echo -n "."; done
-	@echo -n " Database(s) ready!\n"
-	@./sqitch target | grep -E '^local@.*$$' | xargs -t -n 1 ./sqitch deploy -t
+	@scripts/db.sh
 
 .PHONY: migr
 migr: ## Create **sqitch** migrations for given target.
-	@echo 'Not implemented yet.'
+	@scripts/migr.sh
+
 
 .PHONY: db.stop
 db.stop: ## Stops local docker environments and remove all containers, networks etc.

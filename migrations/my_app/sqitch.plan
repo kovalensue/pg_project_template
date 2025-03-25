@@ -1,3 +1,5 @@
 %syntax-version=1.0.0
 %project=my-app
 
+create_schema 2025-03-25T09:33:27Z kovalensue <kovalensue@my_app.com> # Creating schema for my_app application.
+test 2025-03-25T10:01:04Z kovalensue <kovalensue@my_app.com> # some_note

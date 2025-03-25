@@ -5,9 +5,9 @@ networks:
 services:
     my_app:
         container_name: my_app
-        image: some.repository.com/my_app_db:latest
+        image: some.repository.com/my_app_db:latest # need to start using image with already initiliazed database to speed up container startup
         ports:
-            - 50432:5432
+            - 50032:5432
         networks:
             - my_app_db-dev
         healthcheck:
@@ -19,9 +19,9 @@ services:
 
     my_app_replica:
         container_name: my_app_replica
-        image: some.repository.com/my_app_db:latest
+        image: some.repository.com/my_app_db:latest # need to start using image with already initiliazed database to speed up container startup
         ports:
-            - 50032:5432
+            - 50432:5432
         networks:
             - my_app_db-dev
         healthcheck:
