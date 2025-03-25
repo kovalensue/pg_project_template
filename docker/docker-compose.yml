@@ -15,7 +15,7 @@ services:
             interval: 1s
             timeout: 1s
             retries: 5
-            start_period: 5s
+            start_period: 10s
 
     my_app_replica:
         container_name: my_app_replica
@@ -29,4 +29,4 @@ services:
             interval: 1s
             timeout: 1s
             retries: 5
-            start_period: 5s
+            start_period: 10s

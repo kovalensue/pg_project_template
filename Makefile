@@ -12,8 +12,7 @@ db: ## Initialize and start dockerized db environment.
 	@echo -n "Waiting for database(s) ";
 	@until [ "$$(docker ps | grep -vc "healthy" || echo 0)" -eq 1 ]; do sleep 1; echo -n "."; done
 	@echo -n " Database(s) ready!\n"
-	@./sqitch deploy -t local@my_app
-	@./sqitch deploy -t local@my_app_replica
+	@./sqitch target | grep -E '^local@.*$$' | xargs -t -n 1 ./sqitch deploy -t
 
 .PHONY: migr
 migr: ## Create **sqitch** migrations for given target.
