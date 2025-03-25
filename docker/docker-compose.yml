@@ -6,6 +6,7 @@ services:
     my_app:
         container_name: my_app
         image: some.repository.com/my_app_db:latest # need to start using image with already initiliazed database to speed up container startup
+        command: [ "postgres", "-c", "shared_preload_libraries=pg_stat_statements" ] # would be nic eto get this into the image but for onw it must be enough
         ports:
             - 50032:5432
         networks:
@@ -20,6 +21,7 @@ services:
     my_app_replica:
         container_name: my_app_replica
         image: some.repository.com/my_app_db:latest # need to start using image with already initiliazed database to speed up container startup
+        command: [ "postgres", "-c", "shared_preload_libraries=pg_stat_statements" ] # would be nic eto get this into the image but for onw it must be enough
         ports:
             - 50432:5432
         networks:
