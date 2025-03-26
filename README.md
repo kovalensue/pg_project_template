@@ -76,11 +76,11 @@ In this section is described basic usage and how the project structure was actua
 The whole project can be easily controlled using `make` command using targets defined in `Makefile`. Here are all available targets.
 
 ```shell
-  db                                         Initialize and start dockerized db environment.
-  db.stop                                    Stops local docker environments and remove all containers, networks etc.
-  migr                                       Create **sqitch** migrations for given target.
-  help                                       Displays help and usage information.
-  image                                      Builds image according to docker file specified in `./docker`
+  db              Initialize and start dockerized db environment.
+  db.stop         Stops local docker environments and remove all containers, networks etc.
+  migr            Create **sqitch** migrations for given target.
+  help            Displays help and usage information.
+  image           Builds image according to docker file specified in `./docker`
 ```
 
 Make targets are here to make your life easier, but if you are a skilled **Sqitch** or **Docker** user feel free to use these tools directly.
@@ -90,12 +90,10 @@ Make targets are here to make your life easier, but if you are a skilled **Sqitc
 Starts all services according to their definition inside `docker-compose.yml` file. If given services are running we stop them first. When databases are ready apply all migrations for all targets prefixed with `local@`.
 
 **Example:**
-
 ```shell
 make db
 ```
 **Output:**
-
 ```shell
 Starting local database(s)...
 [+] Running 3/3
@@ -116,6 +114,49 @@ Deploying changes to local@my_app_replica
   + create_schema .. ok
   + mega-zmena ..... ok
 ```
+
+#### make db.stop
+
+This command will stop all databases created by `./docker/docker-compose.yml`. This command is here just for consistency and you won't need it much. :smiley:
+
+**Example:**
+```shell
+make db.stop
+```
+**Output**
+```shell
+Stoping local database(s)...
+[+] Running 3/3
+ ✔ Container my_app              Removed                                               0.3s
+ ✔ Container my_app_replica      Removed                                               0.3s
+ ✔ Network docker_my_app_db-dev  Removed                                               0.1s
+```
+
+#### make migr
+
+This command will start an interactive wizard which will help you to create a new migration to the database. Wizard will guide you through the all steps by prompting for a name (name of an actual SQL script), the change description and the target database you want to create a change for. All of this data is passed to **sqitch** which will prepare SQL scripts and add essential information to the correct `sqitch.plan` file.
+
+The targets in the wizard are used to decided the correct directory for the sql scripts and to choose correct plan file. All targets prefixed with `local@` will be shown there.
+
+**Example:**
+```shell
+make migr
+Enter change name: my_app_first_change
+Enter change description: The first change test.
+1) local@my_app
+2) local@my_app_replica
+Select target(s) (comma-separated numbers): 1
+Created migrations/my_app/deploy/my_app_first_change.sql
+Created migrations/my_app/revert/my_app_first_change.sql
+Created migrations/my_app/verify/my_app_first_change.sql
+Added "my_app_first_change" to migrations/my_app/sqitch.plan
+```
+
+This is equivalent to call this **sqitch** command:
+```shell
+./sqitch add -m "The first change test" my_app_first_change local@my_app
+```
+So feel free to use **sqitch** directly if you like it more.
 
 ### Sqitch
 
