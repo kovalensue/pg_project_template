@@ -1,4 +1,4 @@
--- Verify my-app:mega-zmena on pg
+-- Verify my-app:02_subscriber on pg
 
 BEGIN;
 

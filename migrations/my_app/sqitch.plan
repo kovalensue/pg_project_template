@@ -1,7 +1,4 @@
 %syntax-version=1.0.0
 %project=my-app
 
-create_schema 2025-03-25T09:33:27Z kovalensue <kovalensue@my_app.com> # Creating schema for my_app application.
-test 2025-03-25T10:01:04Z kovalensue <kovalensue@my_app.com> # some_note
-my_app_first_change 2025-03-26T22:34:23Z kovalensue <koval@world.com> # The first change test.
-my_app_first_change-2 2025-03-26T22:41:08Z kovalensue <koval@world.com> # The first change test 2
+01_publisher 2025-09-01T22:02:41Z koval <koval@koval-thinkpad> # Create some tables, publication and add tables to the publication.

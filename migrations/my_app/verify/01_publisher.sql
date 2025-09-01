@@ -1,4 +1,4 @@
--- Verify my-app:my_app_first_change on pg
+-- Verify my-app:01_publisher on pg
 
 BEGIN;
 

@@ -1,4 +1,4 @@
--- Deploy my-app:create_schema to pg
+-- Revert my-app:02_subscriber from pg
 
 BEGIN;
 

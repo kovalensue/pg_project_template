@@ -1,4 +1,4 @@
--- Deploy my-app:create_schema to pg
+-- Revert my-app:01_publisher from pg
 
 BEGIN;
 
