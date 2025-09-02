@@ -1,4 +1,4 @@
 %syntax-version=1.0.0
 %project=my-app
 
-02_subscriber 2025-09-01T22:05:51Z koval <koval@koval-thinkpad> # Create replication user, some tables and create subscribtion.
+replica;02_subscriber 2025-09-01T22:05:51Z koval <koval@koval-thinkpad> # Create replication user, some tables and create subscribtion.

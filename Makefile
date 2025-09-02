@@ -1,3 +1,5 @@
+# Wrapper for sqitch add with prefix
+
 .DEFAULT_GOAL := help
 
 # @ - makes commands silent :D
@@ -16,6 +18,11 @@ db.stop: ## Stops local docker environments and remove all containers, networks 
 .PHONY: migr
 migr: ## Create **sqitch** migrations for given target.
 	@scripts/migr.sh
+
+# Wrapper for sqitch add with prefix
+.PHONY: migr.prefix
+migr.prefix: ## Create **sqitch** migration and prefix last entry in plan with target name.
+	@scripts/sqitch_add_with_prefix.sh
 
 # .PHONY: db.image
 # db.image: ## Commit current db containers into new images.
