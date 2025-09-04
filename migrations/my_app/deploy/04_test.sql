@@ -1,4 +1,4 @@
--- Deploy my-app:TEST to pg
+-- Deploy my-app:04_test to pg
 
 BEGIN;
 

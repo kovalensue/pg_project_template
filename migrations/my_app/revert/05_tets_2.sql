@@ -1,4 +1,4 @@
--- Deploy my-app:TEST_2 to pg
+-- Revert my-app:05_tets_2 from pg
 
 BEGIN;
 

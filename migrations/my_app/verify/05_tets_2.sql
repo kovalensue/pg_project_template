@@ -1,4 +1,4 @@
--- Verify my-app:222 on pg
+-- Verify my-app:05_tets_2 on pg
 
 BEGIN;
 

@@ -1,4 +1,4 @@
--- Revert my-app:1 from pg
+-- Revert my-app:04_test from pg
 
 BEGIN;
 

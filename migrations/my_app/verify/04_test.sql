@@ -1,4 +1,4 @@
--- Verify my-app:TEST_2 on pg
+-- Verify my-app:04_test on pg
 
 BEGIN;
 

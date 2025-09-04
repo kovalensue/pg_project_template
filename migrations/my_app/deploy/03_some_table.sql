@@ -1,4 +1,4 @@
--- Revert my-app:TEST from pg
+-- Deploy my-app:03_some_table to pg
 
 BEGIN;
 

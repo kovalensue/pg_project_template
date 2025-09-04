@@ -7,4 +7,4 @@ echo -n "Waiting for database(s) "
 until [ "$(docker ps | grep -vc "healthy" || echo 0)" -eq 1 ]; do sleep 1; echo -n "."; done
 echo -n " Database(s) ready!"
 echo
-./sqitch target | grep -E '^local@.*$$' | xargs -n 1 ./sqitch deploy -t
+./scripts/orchestrate_plan.py

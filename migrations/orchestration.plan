@@ -1,2 +1,10 @@
-local@my_app:1
-local@my_app_replica:2
+local@my_app:01_publisher
+local@my_app_replica:02_subscriber
+local@my_app:03_some_table
+local@my_app:04_test
+#target1:migr1
+#target1:migr2
+#target2:migr3
+#target2:migr4
+#target1:migr5
+local@my_app:05_tets_2

@@ -15,4 +15,5 @@ for i in "${selected[@]}"; do
 	target="${targets[i-1]}"
 	./sqitch add -m "${desc}" "${name}" "$target"
 	echo "$target:$name" >> migrations/orchestration.plan
+	echo "Added migration '$target:$name' in orchestration.plan"
 done

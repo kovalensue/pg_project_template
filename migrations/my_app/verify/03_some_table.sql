@@ -1,4 +1,4 @@
--- Verify my-app:1 on pg
+-- Verify my-app:03_some_table on pg
 
 BEGIN;
 

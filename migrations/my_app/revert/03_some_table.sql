@@ -1,4 +1,4 @@
--- Deploy my-app:222 to pg
+-- Revert my-app:03_some_table from pg
 
 BEGIN;
 

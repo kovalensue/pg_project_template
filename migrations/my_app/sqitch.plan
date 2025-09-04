@@ -1,4 +1,7 @@
 %syntax-version=1.0.0
 %project=my-app
 
-1 2025-09-02T19:55:01Z koval <koval@koval-thinkpad> # 1
+01_publisher 2025-09-01T22:02:41Z koval <koval@koval-thinkpad> # Create some tables, publication and add tables to the publication.
+03_some_table 2025-09-02T20:18:38Z koval <koval@koval-thinkpad> # Adding some tables.
+04_test 2025-09-02T20:21:00Z koval <koval@koval-thinkpad> # Testing same target
+05_tets_2 2025-09-04T20:01:26Z koval <koval@koval-thinkpad> # Test 2

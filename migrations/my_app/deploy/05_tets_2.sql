@@ -1,4 +1,4 @@
--- Deploy my-app:2 to pg
+-- Deploy my-app:05_tets_2 to pg
 
 BEGIN;
 
