@@ -24,6 +24,10 @@ migr: ## Create **sqitch** migrations for given target.
 migr.prefix: ## Create **sqitch** migration and prefix last entry in plan with target name.
 	@scripts/sqitch_add_with_prefix.sh
 
+.PHONY: dump
+dump: ## Dump all dbs to dumps/ folder.
+	@scripts/dump_targets.sh
+
 # .PHONY: db.image
 # db.image: ## Commit current db containers into new images.
 # 	@echo 'Not implemented yet.'
